@@ -84,7 +84,7 @@ createNewArray();
 /**
  * Complete this method to create Bars of random heights
  */
-function createNewArray(arraySize) {
+function createNewArray() {
     // calling helper function to delete old bars from dom
     deleteChild();
 
