@@ -28,12 +28,12 @@ function enableSortingBtn(){
 
 // Disables size slider used in conjunction with enable, so that we can disable during sorting and enable buttons after it
 function disableSizeSlider(){
-    document.querySelector("#arr_sz").disabled = true;
+    document.querySelector("#size_input").disabled = true;
 }
 
 // Enables size slider used in conjunction with disable
 function enableSizeSlider(){
-    document.querySelector("#arr_sz").disabled = false;
+    document.querySelector("#size_input").disabled = false;
 }
 
 // Disables newArray buttons used in conjunction with enable, so that we can disable during sorting and enable buttons after it
@@ -59,9 +59,10 @@ function waitforme(milisec) {
 // Selecting size slider from DOM
 let arraySize = document.querySelector('#size_input');
 // add Event listener to update the bars on the UI
- arraySize.addEventListener('input',function(){
+arraySize.addEventListener('input',function(){
     createNewArray(arraySize.value);
-  } )
+})
+
 // Default input for waitforme function (260ms)
 let delay = 260;
 
@@ -84,32 +85,37 @@ createNewArray();
 /**
  * Complete this method to create Bars of random heights
  */
+
+
 function createNewArray() {
     // calling helper function to delete old bars from dom
     deleteChild();
 
     // create an array of random numbers 
     array = [];
-    for (let i = 0; i <=arraySize.value; i++) {
-        let a=Math.floor(Math.random()*100);
-        array.push(a);
-    }
+        for (let i = 0; i < arraySize.value; i++) {
+            let k = Math.floor(Math.random() * 100) + 1;
+            array.push(k);
+        }
     // select the div #bars element
     const bars = document.querySelector("#bars");
-
+        console.log(array.size);
+        console.log(arraySize.value);
+        
     // create multiple element div using loop and adding class 'bar col'
-    for (let i = 0; i <=arraySize.value; i++) {
+    for (let i = 0; i < arraySize.value; i++) {
+        //create element
+        // update height of bar
+        // add appropriate styling class to the element
+        // add element to the DOM by appending to the div #bars
         const bar = document.createElement("div");
         bar.classList.add("bar");
         bar.style.height = `${array[i] * 7}px`;
          bars.appendChild(bar);
     }
-        //create element
-        // update height of bar
-        // add appropriate styling class to the element
-        // add element to the DOM by appending to the div #bars
     
 }
+
 
 // Helper function to delete all the previous bars so that new can be added
 function deleteChild() {
@@ -122,6 +128,7 @@ const newArray = document.querySelector(".newArray");
 newArray.addEventListener("click", function(){
     console.log("From newArray " + arraySize.value);
     console.log("From newArray " + delay);
+    console.log(array);
     enableSortingBtn();
     enableSizeSlider();
     createNewArray(arraySize.value);
